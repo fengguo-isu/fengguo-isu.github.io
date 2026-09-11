@@ -1,40 +1,46 @@
 # Jason (Feng) Guo — Academic Homepage
 
-Pure HTML + one CSS file. No build step. No frameworks.
+Pure HTML, one CSS file, and one small script for the Research page. No build step. No frameworks.
 
 ## File Structure
 
 ```
-jason-site/
-├── index.html              # Home page (bio, photo, news)
-├── style.css               # Shared stylesheet
-├── research/
-│   └── index.html          # Publications + working papers
-├── teaching/
-│   └── index.html          # Course history
+fengguo-isu.github.io/
+├── index.html              # Home page (name, photos, links, bio, education)
+├── research.html           # Publications, working papers, topics, data, teaching, service
+├── style.css               # Shared stylesheet; colors are at the top
+├── assets/
+│   ├── research.js         # Filters, topic chart, timeline on research.html
+│   └── band.svg            # Banner behind the "Research" title
+├── fonts/                  # Barlow Condensed + Inter, self-hosted (OFL.txt = license)
+├── research/index.html     # Forwards the old /research/ address to research.html
+├── teaching/index.html     # Forwards the old /teaching/ address to research.html#teaching
 └── files/
-    ├── profile.jpg         # YOUR PHOTO — REPLACE THIS
-    └── CV_JasonGuo.pdf     # YOUR CV — ADD THIS
+    ├── portrait.jpg        # Large home-page photo (web-sized copy of update_photo.jpg)
+    └── profile.jpg         # Earlier photo, shown next to the bio
 ```
 
-## Before You Deploy: Things to Customize
+## Still to do
 
-These are placeholders in the HTML files — find and replace before pushing.
+- **Stats row** — the citation, h-index, and SSRN numbers near the top of
+   `research.html` are typed in by hand. Update them, and the "as of"
+   date, now and then.
 
-1. **Profile photo** — Save your headshot as `files/profile.jpg`
-   (or update the `<img src=...>` path in `index.html`).
-2. **CV** — Save your CV as `files/CV_JasonGuo.pdf`.
-3. **Google Scholar link** — In `index.html` and `research/index.html`,
-   replace `YOUR_ID` in
-   `https://scholar.google.com/citations?user=YOUR_ID` with your actual ID.
-4. **SSRN link** — Same idea, replace `YOUR_ID` in the SSRN URLs.
-5. **GitHub username** — In the footer of `index.html`, replace `YOUR_USERNAME`.
-6. **News section** — On `index.html`, the News list has placeholders.
-   Hanzhe's site uses these conventions:
-   - 📖 publication / paper update
-   - 🔈 talk, announcement, visit
-   - 🏆 award or honor
-   - 💰 grant or funding
+## Adding or updating a paper
+
+Everything on the Research page — the filter counts, topic chart, and
+timeline — is built from the paper list in `research.html`.
+To add a paper, copy an existing `<li class="item">` block and edit it:
+
+- `data-lists`: `utd24` and/or `ft50`, or leave it empty.
+- `data-topics`: one or two of `audit`, `ma`, `gov`, `disc`, `tech`, `labor`.
+- `data-year`: the publication year.
+- Wrap each coauthor in `<span class="co">…</span>`, spelled the same way
+  every time, so clicking a name filters the list.
+
+Working papers go in the list under "Working papers" the same way, without
+`data-lists`. Numbering is automatic. Topic names and colors are set at the
+top of `assets/research.js`.
 
 ## How to Deploy on GitHub Pages (Windows)
 
@@ -57,7 +63,7 @@ exactly `<username>.github.io`. For example, if your GitHub username is
    Choose a local folder (e.g., `C:\Users\Jason\Documents\GitHub\`).
 3. Open that folder in File Explorer. Copy all the files from this `jason-site/`
    folder INTO it (so `index.html` is at the top level of the repo).
-4. Add `profile.jpg` and `CV_JasonGuo.pdf` to the `files/` subfolder.
+4. Add `profile.jpg` to the `files/` subfolder.
 5. Back in GitHub Desktop, you'll see all the changes. Type a commit message
    like "Initial site" and click **Commit to main**, then **Push origin**.
 
@@ -87,11 +93,17 @@ If you own a domain (e.g., `jasonguo.com`):
 
 ## Notes on the Design
 
-- Single CSS file, ~100 lines. Edit `style.css` to change colors, fonts, widths.
-- Default link color is classic academic blue. Change it in `style.css` if you
-  prefer black or another color.
-- The home page uses a flex layout: bio on the left, photo on the right.
-  On mobile (≤700px), the photo moves above the text.
+- Dark throughout. Iowa State gold (`#F1BE48`) marks links and highlights;
+  cardinal (`#C8102E`) is used for bars, rules, and the background glow. All
+  colors are variables at the top of `style.css`.
+- Both pages sit at the top level of the folder, so they preview correctly
+  when opened straight from disk. The old `/research/` and `/teaching/`
+  addresses forward to `research.html`.
+- Headings and labels use Barlow Condensed; body text uses Inter. Both are
+  served from `fonts/` rather than Google Fonts, so the site loads normally
+  where Google is blocked.
+- The home-page photo fills the right side and fades into the background; on
+  phones and tablets (≤900px) it sits at the top and fades down behind the name.
 - All content was migrated from your existing Google Site
   (<https://sites.google.com/view/jason-feng-guo/>) — proofread before
   going live in case anything has changed.

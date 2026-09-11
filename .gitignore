@@ -1,0 +1,4 @@
+# Full-size original photo; the site uses the web-sized copy in files/portrait.jpg
+update_photo.jpg
+# Copies of files shared in Claude chats; not part of the site
+Claude outputs/
