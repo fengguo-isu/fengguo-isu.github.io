@@ -45,6 +45,12 @@ them as hollow marks), put a status such as R&R or Under review in
 the public draft is current. Numbering is automatic. Topic names and colors are set at
 the top of `assets/research.js`.
 
+## Visitor analytics
+
+Visits are counted with Google Analytics (measurement ID `G-TN4QE180KM`).
+The tag sits near the top of the `<head>` in `index.html` and `research.html`;
+copy it into any new page. Reports are at analytics.google.com.
+
 ## How to Deploy on GitHub Pages (Windows)
 
 ### Step 1 — Create a GitHub repo
