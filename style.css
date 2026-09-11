@@ -118,6 +118,7 @@ h3.sub { font-family: var(--disp); font-weight: 400; font-size: 20px; letter-spa
 .plain { margin: 0; padding-left: 1.2rem; max-width: 740px; color: #dcd9d2; }
 .plain li { margin-bottom: .45rem; }
 .plain li::marker { color: var(--cardinal); }
+.nw { white-space: nowrap; }
 
 footer { background: var(--bg-2); border-top: 1px solid var(--line); color: var(--text-3); padding: 2.4rem 2rem; text-align: center; font-size: 13.5px; }
 footer a { text-decoration: none; }
