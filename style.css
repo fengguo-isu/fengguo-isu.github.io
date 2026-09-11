@@ -191,10 +191,13 @@ footer .upd { display: block; margin-top: .35rem; }
 .ttl a { color: var(--heading); text-decoration: none; border-bottom: 1px solid rgba(236, 233, 226, .22); }
 .ttl a:hover { color: var(--gold); border-color: var(--gold); }
 .au { color: var(--text-2); font-size: 14px; margin-top: 3px; }
+.au .co { white-space: nowrap; }
 .au .co[role="button"] { cursor: pointer; border-bottom: 1px dotted transparent; }
 .au .co[role="button"]:hover, .au .co[role="button"]:focus-visible { color: var(--text); border-bottom-color: var(--gold); }
 .ven { font-family: var(--disp); font-size: 16.5px; letter-spacing: .03em; color: #d6d3cb; margin-top: 3px; }
 .ven em { font-style: normal; color: var(--text-3); }
+.ven em.st { color: var(--gold); }
+.ven em.st::before { content: "\00b7"; color: var(--text-3); margin: 0 .45em 0 .1em; }
 .marks { margin-top: 7px; display: flex; flex-wrap: wrap; gap: 6px; }
 .mark, .tag { font-family: var(--disp); font-size: 13px; line-height: 1.5; border-radius: 2px; cursor: pointer; }
 .mark { letter-spacing: .13em; padding: 0 8px; border: 1px solid rgba(241, 190, 72, .5); background: none; color: var(--gold); }

@@ -39,8 +39,11 @@ To add a paper, copy an existing `<li class="item">` block and edit it:
   every time, so clicking a name filters the list.
 
 Working papers go in the list under "Working papers" the same way, without
-`data-lists`. Numbering is automatic. Topic names and colors are set at the
-top of `assets/research.js`.
+`data-lists`. Give them the current year as `data-year` (the timeline shows
+them as hollow marks), put a status such as R&R or Under review in
+`<em class="st">…</em>` after "Working paper", and link the title only when
+the public draft is current. Numbering is automatic. Topic names and colors are set at
+the top of `assets/research.js`.
 
 ## How to Deploy on GitHub Pages (Windows)
 

@@ -59,6 +59,7 @@
       title: ttl ? ttl.textContent.replace(/\s+/g, ' ').trim() : '',
       venue: venueName,
       forthcoming: !!(em && /forthcoming/i.test(em.textContent)),
+      status: em && em.classList.contains('st') ? em.textContent.replace(/\s+/g, ' ').trim() : '',
       text: li.textContent.replace(/\s+/g, ' ').toLowerCase()
     };
   });
@@ -66,7 +67,7 @@
   var pubs = papers.filter(function (p) { return !p.wp; });
 
   function venueLine(p) {
-    if (p.wp) return 'Working paper (' + p.year + ')';
+    if (p.wp) return 'Working paper' + (p.status ? ' \u00b7 ' + p.status : '');
     return p.venue + ' (' + (p.forthcoming ? 'forthcoming' : p.year) + ')';
   }
 
@@ -253,11 +254,20 @@
     inLane.forEach(function (p) { (byYear[p.year] = byYear[p.year] || []).push(p); });
     Object.keys(byYear).forEach(function (yr) {
       var arr = byYear[yr];
+      // Up to three marks in a year sit side by side; more stack in two rows.
+      // The group is nudged inward so it never runs past either end of the track.
+      var rows = arr.length > 3 ? 2 : 1;
+      var perRow = Math.ceil(arr.length / rows);
+      var reach = (perRow - 1) / 2 * 13 + 7;
+      var centre = 'clamp(' + reach + 'px, ' + xpct(+yr).toFixed(2) + '%, 100% - ' + reach + 'px)';
       arr.forEach(function (p, i) {
-        var off = (i - (arr.length - 1) / 2) * 13;
+        var second = i >= perRow;
+        var n = second ? arr.length - perRow : perRow, j = second ? i - perRow : i;
+        var off = (j - (n - 1) / 2) * 13;
         var d = el('button', 'ldot' + (p.wp ? ' wp' : ''));
         d.type = 'button';
-        d.style.left = 'calc(' + xpct(+yr).toFixed(2) + '% + ' + off + 'px)';
+        d.style.left = 'calc(' + centre + ' + ' + off + 'px)';
+        if (rows > 1) d.style.top = 'calc(50% ' + (second ? '+' : '-') + ' 7px)';
         d.style.setProperty('--c', t.color);
         d.setAttribute('aria-label', p.title + '. ' + venueLine(p) + '. ' + t.name + '.');
         d.addEventListener('pointerenter', function () { showTip(d, p); });
